@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const proxyController = require('../controllers/proxyController.js');
-
+const proxyController = require('../controllers/proxyController');
 
 router.get('/universities', proxyController.getUniversities);
 

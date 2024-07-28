@@ -1,12 +1,11 @@
-const proxyService = require('../services/proxyService');
+const proxyService = require('../services/proxyService.js');
 
 exports.getUniversities = async (req, res) => {
-    try {
-        const { country } = req.query;
-        const universities = await proxyService.fetchUniversities(country);
-        res.json(universities);
-    } catch (error) {
-        console.error('Error in proxyController:', error.message);
-        res.status(500).json({ error: 'An error occurred while fetching universities.' });
-    }
+  try {
+    const country = req.query.country;
+    const universities = await proxyService.fetchUniversitiesFromExternalAPI(country);
+    res.json(universities);
+  } catch (error) {
+    res.status(500).send('Error fetching universities');
+  }
 };

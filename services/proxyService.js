@@ -1,16 +1,14 @@
+const fetch = require('node-fetch');
 
-const axios = require('axios');
-
-const BASE_URL = 'https://universities.hipolabs.com';
-
-exports.fetchUniversities = async (country) => {
-    try {
-        const response = await axios.get(`${BASE_URL}/search`, {
-            params: { country }
-        });
-        return response.data;
-    } catch (error) {
-        console.error('Error in proxyService:', error.message);
-        throw new Error('Failed to fetch universities');
+exports.fetchUniversitiesFromExternalAPI = async (country) => {
+  try {
+    const response = await fetch(`http://universities.hipolabs.com/search?country=${country}`);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw new Error('Failed to fetch universities');
+  }
 };
