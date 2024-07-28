@@ -13,12 +13,12 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 const cvRoutes = require('./routes/cvRoutes');
 const userRoutes = require('./routes/userRoutes');
 const alljobsRoutes = require('./routes/alljobsRoutes');
-const proxyRoutes = require('./routes/proxyRouter');
+const proxyRoutes = require('./routes/proxyRoutes');
 
 app.use('/api/cvs', cvRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/all-jobs' , alljobsRoutes);
-app.use('/api', proxyRoutes);
+app.use('/api/', proxyRoutes);
 
 app.listen(port, () => {
   try{

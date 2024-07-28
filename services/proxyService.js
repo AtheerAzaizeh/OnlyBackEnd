@@ -1,14 +1,12 @@
-const fetch = require('node-fetch');
+const axios = require('axios');
 
-exports.fetchUniversitiesFromExternalAPI = async (country) => {
+const fetchFromExternalAPI = async (endpoint) => {
   try {
-    const response = await fetch(`http://universities.hipolabs.com/search?country=${country}`);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    const data = await response.json();
-    return data;
+    const response = await axios.get(endpoint);
+    return response.data;
   } catch (error) {
-    throw new Error('Failed to fetch universities');
+    throw new Error(`Error fetching data: ${error.message}`);
   }
 };
+
+module.exports = { fetchFromExternalAPI };

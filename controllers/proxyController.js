@@ -1,11 +1,17 @@
-const proxyService = require('../services/proxyService.js');
+const proxyModel = require('../services/proxyService');
 
-exports.getUniversities = async (req, res) => {
+const getUniversities = async (req, res) => {
   try {
     const country = req.query.country;
-    const universities = await proxyService.fetchUniversitiesFromExternalAPI(country);
-    res.json(universities);
+    if (!country) {
+      return res.status(400).json({ error: 'Country query parameter is required' });
+    }
+
+    const data = await proxyModel.fetchFromExternalAPI(`https://universities.hipolabs.com/search?country=${country}`);
+    res.json(data);
   } catch (error) {
-    res.status(500).send('Error fetching universities');
+    res.status(500).json({ error: error.message });
   }
 };
+
+module.exports = { getUniversities };
