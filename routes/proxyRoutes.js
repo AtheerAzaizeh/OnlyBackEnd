@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const proxyController = require('../controllers/proxyController');
+const { apiProxy } = require('../services/proxyService');
 
-router.get('/universities', proxyController.getUniversities);
+router.use('/universities', apiProxy);
 
 module.exports = router;
+

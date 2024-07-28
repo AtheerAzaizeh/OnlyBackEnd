@@ -1,12 +1,11 @@
-const axios = require('axios');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
-const fetchFromExternalAPI = async (endpoint) => {
-  try {
-    const response = await axios.get(endpoint);
-    return response.data;
-  } catch (error) {
-    throw new Error(`Error fetching data: ${error.message}`);
-  }
-};
+const apiProxy = createProxyMiddleware({
+  target: 'http://universities.hipolabs.com',
+  changeOrigin: true,
+  pathRewrite: {
+    '^/api': '', 
+  },
+});
 
-module.exports = { fetchFromExternalAPI };
+module.exports = { apiProxy };
