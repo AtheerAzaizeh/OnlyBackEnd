@@ -8,7 +8,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
     const password = passwordInput.value.trim();
    
     try {
-      const response = await fetch('http://localhost:3000/api/users/login', {
+      const response = await fetch('https://onlybackend-wgcr.onrender.com/api/users/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
