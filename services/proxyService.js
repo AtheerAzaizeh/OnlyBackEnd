@@ -4,8 +4,12 @@ const apiProxy = createProxyMiddleware({
   target: 'http://universities.hipolabs.com',
   changeOrigin: true,
   pathRewrite: {
-    '^/api': '', 
+    '^/api/universities': '',
   },
+  onError: (err, req, res) => {
+    console.error('Proxy error:', err);
+    res.status(500).send('Proxy error');
+  }
 });
 
 module.exports = { apiProxy };

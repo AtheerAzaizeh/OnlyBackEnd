@@ -18,7 +18,7 @@ const proxyRoutes = require('./routes/proxyRoutes');
 app.use('/api/cvs', cvRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/all-jobs' , alljobsRoutes);
-app.use('/api/', proxyRoutes);
+app.use('/api/universities', proxyRoutes);
 
 app.listen(port, () => {
   try{
