@@ -14,11 +14,14 @@ const cvRoutes = require('./routes/cvRoutes');
 const userRoutes = require('./routes/userRoutes');
 const alljobsRoutes = require('./routes/alljobsRoutes');
 const proxyRoutes = require('./routes/proxyRoutes');
+const errorMiddleware = require('./middleware/errormiddleware.js');
 
 app.use('/api/cvs', cvRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/all-jobs' , alljobsRoutes);
 app.use('/api/universities', proxyRoutes);
+
+app.use(errorMiddleware);
 
 app.listen(port, () => {
   try{

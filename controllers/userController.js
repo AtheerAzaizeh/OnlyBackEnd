@@ -11,12 +11,14 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await reguserService.loginUser(email, password);
+    const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    const user = await reguserService.loginUser(email, password, ipAddress);
     res.json({ token: user.token, role: user.role, user_id: user.user_id });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
+
 
 module.exports = {
   registerUser,
