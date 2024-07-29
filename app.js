@@ -15,11 +15,13 @@ const userRoutes = require('./routes/userRoutes');
 const alljobsRoutes = require('./routes/alljobsRoutes');
 const proxyRoutes = require('./routes/proxyRoutes');
 const errorMiddleware = require('./middleware/errormiddleware.js');
+const workerRoutes = require('./routes/workerRoutes');
 
 app.use('/api/cvs', cvRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/all-jobs' , alljobsRoutes);
 app.use('/api/universities', proxyRoutes);
+app.use('/api/workers', workerRoutes);
 
 app.use(errorMiddleware);
 
